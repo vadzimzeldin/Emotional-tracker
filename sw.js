@@ -1,8 +1,10 @@
 const CACHE_NAME = 'sostoyanie-v1';
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/manifest.json'
+  '/Emotional-tracker/',
+  '/Emotional-tracker/index.html',
+  '/Emotional-tracker/manifest.json',
+  '/Emotional-tracker/icons/icon-192.png',
+  '/Emotional-tracker/icons/icon-512.png'
 ];
 
 self.addEventListener('install', (e) => {
@@ -25,6 +27,6 @@ self.addEventListener('activate', (e) => {
 self.addEventListener('fetch', (e) => {
   e.respondWith(
     caches.match(e.request)
-      .then(res => res || fetch(e.request))
+      .then(res => res || fetch(e.request).catch(() => new Response('Офлайн', { status: 503 })))
   );
 });
