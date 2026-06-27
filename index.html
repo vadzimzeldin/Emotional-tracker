@@ -745,6 +745,12 @@
     // ── РЕНДЕРИНГ ────────────────────────────────────────────────────────
     const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(<App />);
+    // РЕГИСТРАЦИЯ SERVICE WORKER
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/Emotional-tracker/sw.js')
+    .then(reg => console.log('SW registered:', reg))
+    .catch(err => console.error('SW registration failed:', err));
+}
   </script>
 </body>
 </html>
